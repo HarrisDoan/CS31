@@ -1,0 +1,19 @@
+2. Write a program that reads two integers and determines whether or not these two integers 
+are palindromes of one another. A palindrome number is a value that reads the same 
+forwards and backwards. HINT: Use % and / to break the value into its different digits. 
+ 
+ 
+Sample input: 
+62 26 
+Sample output: 
+true 
+ 
+Sample input: 
+154 451 
+Sample output: 
+true 
+ 
+Sample input: 
+25 56 
+Sample output: 
+false 
