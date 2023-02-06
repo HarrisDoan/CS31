@@ -1,0 +1,102 @@
+Terminal Copy of Test Cases:
+
+Last login: Mon Feb  6 04:06:41 on ttys001
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q2p1d1
+isValidQC returns: true
+passQC returns: 1
+defectQC returns: 1
+batches returns: 1
+totalQC returns: : 2
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q2d1p1Q5p3d2
+isValidQC returns: true
+passQC returns: 4
+defectQC returns: 3
+batches returns: 2
+totalQC returns: : 7
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q1p0d1Q1d0p1
+isValidQC returns: true
+passQC returns: 1
+defectQC returns: 1
+batches returns: 2
+totalQC returns: : 2
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q5d2p3
+isValidQC returns: true
+passQC returns: 3
+defectQC returns: 2
+batches returns: 1
+totalQC returns: : 5
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+q1p0d1
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q1pd1
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q1p1d
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q1p0d1   asdfR
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q5p00003d0002
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q5p0d0
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q0p0d0
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q5p0d5
+isValidQC returns: true
+passQC returns: 0
+defectQC returns: 5
+batches returns: 1
+totalQC returns: : 5
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q7p7d0
+isValidQC returns: true
+passQC returns: 7
+defectQC returns: 0
+batches returns: 1
+totalQC returns: : 7
+harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+Q10p5d5Q20p10d10Q4p2d1
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+harrisdoan@s-164-67-81-114 Project_3_Real % 
