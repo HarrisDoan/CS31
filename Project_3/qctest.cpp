@@ -15,7 +15,8 @@ int totalQC(string result);
 int batches(string result);
 bool isValidQC(string result);
 
-// Iterates through the string at the position +1 of Q. Scans for the value in front of Q and returns it.
+// Iterates through the string at the position +1 of Q. Scans for the alll the values in front of Q and returns it as the sum of all possible values.
+// This function gives me the total quality checks in the entire string sequence
 int quantities_value(string result)
 {
     int quant_value = 0;
@@ -34,7 +35,8 @@ int quantities_value(string result)
     return quant_value;
 }
 
-// Iterates through the string at the position p. Scans for the value in front of p and returns it.
+// Iterates through the string at the position p. Scans for all the values in front of p and returns it as the sum of all possible values.
+// This function gives me the total passes in the entire string sequence
 int pass_value(string result)
 {
     int pass_value = 0;
@@ -54,6 +56,8 @@ int pass_value(string result)
 }
 
 // Iterates through the string at the position d. Scans for the value in front of d and returns it.
+// This function gives me the total defects in the entire string sequence
+
 int defect_value(string result)
 {
     int defects_value = 0;
@@ -72,7 +76,7 @@ int defect_value(string result)
     return defects_value;
 }
 
-// Returns the total of the pass_value and defect_value
+// Returns the total of the pass_value and defect_value (allows for me to check if the totalQC != or ==)
 int total(string result)
 {
     return pass_value(result) + defect_value(result);
@@ -195,6 +199,7 @@ bool isValidQC(string result)
         return false;
     }
 
+    // Quantities from test should equal all the pass_values and all the defect_values
     if (quantities_value(result) != pass_value(result) + defect_value(result))
     {
         return false;
@@ -210,6 +215,7 @@ int passQC(string result)
     if (!isValidQC(result))
         return -1;
 
+    // If the isValidQC passes all test cases: pass_value is returned in the end
     return pass_value(result);
 }
 
@@ -220,6 +226,7 @@ int defectQC(string result)
     if (!isValidQC(result))
         return -1;
 
+    // If the isValidQC passes all test cases: defect_value is returned in the end
     return defect_value(result);
 }
 
@@ -229,6 +236,7 @@ int totalQC(string result)
     if (!isValidQC(result))
         return -1;
 
+    // If the isValidQC passes all test cases: quantities_value is returned in the end
     return quantities_value(result);
 }
 

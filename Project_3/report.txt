@@ -1,4 +1,19 @@
 Terminal Copy of Test Cases:
+This is the list from my terminal when I was doing all the test cases for my code. The first 11 are from the Project 3 spec.
+Test 1: was a valid string from spec. Should return true and correct calculations.
+Test 2: was a valid string from spec. Should return true and correct calculations.
+Test 3: Was a valid string from spec. Should return true and correct calculations.
+Test 4: Was a valid string from spec. Should return true and correct calculations.
+Test 5: First false string. Should return false and -1 for all values. Testing for: The Q isn't capitalized.
+Test 6: Next false string. Should return false and -1 for all values. Testing for: p is not followed by a value. 
+Test 7: Next false string. Should return false and -1 for all values. Testing for: d is not followed by a value.
+Test 8: Next false string. Should return false and -1 for all values. Testing for: extra spaces and letters not allowed.
+Test 9: Next false string. Should return false and -1 for all values. Testing for: leading zero's not allowed
+Test 10: Next false string. Should return false and -1 for all values. Testing for: p0 and d0 not allowed
+Test 11: Next false string. Should return false and -1 for all values. Testing for: Empty string. Q0p0d0. Not values. Not allowed
+Test 12: Valid string with a 0 on p or d. Should return true and correct calculations. Testing for: allows for a 0 on p or d value if there are no leading zeros and the sum is correct.
+Test 13: Valid string with a 0 on p or d. Should return true and correct calculations. Testing for: allows for a 0 on p or d value if there are no leading zeros and the sum is correct.
+Test 14: Long string test but the final string Q4p2d1 is invalid. Should return false and -1 for all values. Testing for: regardless of how long the string becomes. Should return false just because 1 value is wrong.
 
 Last login: Mon Feb  6 04:06:41 on ttys001
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
@@ -8,6 +23,7 @@ passQC returns: 1
 defectQC returns: 1
 batches returns: 1
 totalQC returns: : 2
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q2d1p1Q5p3d2
 isValidQC returns: true
@@ -15,6 +31,7 @@ passQC returns: 4
 defectQC returns: 3
 batches returns: 2
 totalQC returns: : 7
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q1p0d1Q1d0p1
 isValidQC returns: true
@@ -22,6 +39,7 @@ passQC returns: 1
 defectQC returns: 1
 batches returns: 2
 totalQC returns: : 2
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q5d2p3
 isValidQC returns: true
@@ -29,6 +47,7 @@ passQC returns: 3
 defectQC returns: 2
 batches returns: 1
 totalQC returns: : 5
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 q1p0d1
 isValidQC returns: false
@@ -36,6 +55,7 @@ passQC returns: -1
 defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q1pd1
 isValidQC returns: false
@@ -43,6 +63,7 @@ passQC returns: -1
 defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q1p1d
 isValidQC returns: false
@@ -50,6 +71,7 @@ passQC returns: -1
 defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q1p0d1   asdfR
 isValidQC returns: false
@@ -57,6 +79,7 @@ passQC returns: -1
 defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q5p00003d0002
 isValidQC returns: false
@@ -64,6 +87,7 @@ passQC returns: -1
 defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q5p0d0
 isValidQC returns: false
@@ -71,6 +95,7 @@ passQC returns: -1
 defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q0p0d0
 isValidQC returns: false
@@ -78,6 +103,7 @@ passQC returns: -1
 defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q5p0d5
 isValidQC returns: true
@@ -85,6 +111,7 @@ passQC returns: 0
 defectQC returns: 5
 batches returns: 1
 totalQC returns: : 5
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q7p7d0
 isValidQC returns: true
@@ -92,6 +119,7 @@ passQC returns: 7
 defectQC returns: 0
 batches returns: 1
 totalQC returns: : 7
+
 harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
 Q10p5d5Q20p10d10Q4p2d1
 isValidQC returns: false
@@ -99,4 +127,86 @@ passQC returns: -1
 defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
-harrisdoan@s-164-67-81-114 Project_3_Real % 
+
+Brief Description of Obstacles:
+For a brief description I had nearly 1,000,000 different obstacles to overcome when looking at this project. Originally I was overcomplicating the process A BUNCH.
+I start thinking about what I would do with the initial string input from the user. I knew I would use a lot of for loops to iterate through the entire string to find
+certain things such as the 'p', 'd', and 'Q'. However, how I was going to put that all together was something else. The biggest hurdle at the time was figuring out a way
+to calculate the total for all the passes and defects. At first I did a index approach where I indexed the location of p and d allowing for me to doing a string subtract
+to create a new substring with just the values of p and d. This led to me creating a function that finds the "size" of the number such as the string Q20p10d10. The index
+of 'p' is at 3 and the index of 'd' is at 6. Subtracting these two gave me the value 3 which isn't neceassrily correct. Looking at a larger string such as Q1000p500d500,
+you can see the index of p is at 5 and the index of d is at 9. 9 minus 5 giving the value 4 which is off by one. This gave me a formula that the new string would begin at
+index p + 1, and then it would end at the index of p + the size of P. The size of P being the index of d - the index of p - 1. This was an elegant solution since if I could
+make the code work for a single string, I can expand it forward to work for a countless amount of strings. However, when I came to make the running sum to calculate all the sums
+I ran into many many errors. Possibly becasue there were so many for and if statements and the final return value was outside the brackets, since if it was inside it would return
+the wrong value. So I knew my approach was flawed and that there was probably a much simpler way. I jumped into the deep end and the rabbit hole thing maybe I can partition the strings,
+sum their individual parts separately and then combine the entire thing. This is when I discovered the issue of having values be determined at run time not working for values
+that needed to be present at the compile time. I finally cracked the code when I realize, I could make this SOOO much easier by making 3 important functions and then focusing
+entirely on the isValidQC function. I was so focused and tunneled vision on figuring out the math, I overlooked a really simple solution. I create a function that when it detects
+a p or d, it begins to create a new string. The new string would add any string element to the new substring as long as it was a digit. Here's the logic: if the string is something
+like Q20p10d10. The new substring would begin being read at i + 1. This is using a for(int i = 0; i < result.length(); i++). Then I would call i + 1 = j. So then I can iterate 
+from the new beginning point of the letter I'm looking for such as p. This then checks each element 1 by 1 until it detects a non-digit. If there is not a digit present, that means
+a 'd' or a 'p' has been found. This means the new substring is done. I can then save this. Then I can declare a value += to that result at index j. Then I can do the string to int
+function of stoi and return that total value. Since I now have the correct way of calculating all the totals of p, q, and Q, all I had to do was implement rigorous constraints
+to my isValidQC. When I would implement the final functions at the end such as passQC, defectQC, and totalQC all I had to do was return the value of the 3 math functions I created
+in the very beginning. But I would add an if statement, that if the isValidQC return was not true, the main functions would return -1. I spent the rest of the time just adding 
+constraints to the isValidQC using the test cases from the Project 3 spec to base what I needed to check for validity. Biggest thing I've learned is that there are smarter ways
+than brute forcing the entire thing and thinking of it logically and sequentially will save you a lot of time. Instead of making functions and executing them without a thought,
+I needed to be far more strategic with where I place everything. I learned that adding functions is really like a game of chess. Where should these pieces go? What do I  want
+them to do? etc... Overall glad I figured it all out because I was very close to giving up. 
+
+A Brief Description of the Code:
+
+Program start
+
+Function 1: Finds and calculates all the values in front of Q. 
+Example: Q20p10d10Q4p2d2, after this string is read and the function executes. 24 should return.
+
+Function 2: Finds and calculates all the values in front of p. 
+Example: Q20p10d10Q4p2d2, after this string is read and the function executes. 12 should return.
+
+Function 3: Finds and calculates all the values in front of d. 
+Example: Q20p10d10Q4p2d2, after this string is read and the function executes. 12 should return.
+
+Function 4: Using the above 2 functions that calculate p and d. Find the total of these two aka their sum.
+Example: Q20p10d10Q4p2d2, after this string is read and the function executes. 24 should return.
+
+Function isValidQC():
+This is the MOST important function in the entire line of code. If this doesn't check the string for validity. Then everything else fails.
+Key things: 
+no leading 0's on p, d, or Q
+the value of quantities should equal the total, ie Q20p8d10 ==> quantities = 20 and total = 18. They != therefore it returns false.
+check for null spaces such as spaces. There should be no spaces in the string. 
+check for a 0 and then an integer. ie Q4p04d0 ==> although the total and quantities add up. The leading 0 on p. Need to allow a 0 if they add up. Such as Q4p0d4 is valid.
+check to make sure p or d is followed by an integer not a letter. This means that after p and d, a value must be present. ie ==> Q1pd1 returns false
+
+function passQC():
+if anything in isValidQC fails ==> immediately return -1
+else returns the value of function 2;
+
+function defectQC();
+if anything in isValidQC fails ==> immediately return -1
+else returns the value of function 3;
+
+function totalQC():
+if anything in isValidQC fails ==> immediately return -1
+else returns the value of function 1;
+
+function batches():
+if anything in isValidQC fails ==> immediately return -1
+Easily the least troublesome function. Iterate through the length of the string. If a Q is found. Counter increments up by 1.
+returns this value.
+
+int main()
+{
+    string result;                                                      // Initialze the result string
+    getline(cin, result);                                               // getline so whitespaces aren't ignored
+    cout.setf(ios::boolalpha);                                          //Boolean functions return true or false
+    cout << "isValidQC returns: " << isValidQC(result) << endl;         //Cout's for all the things we check for
+    cout << "passQC returns: " << passQC(result) << endl;
+    cout << "defectQC returns: " << defectQC(result) << endl;
+    cout << "batches returns: " << batches(result) << endl;
+    cout << "totalQC returns: : " << totalQC(result) << endl;
+}
+
+Program end
