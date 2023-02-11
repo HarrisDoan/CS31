@@ -16,16 +16,16 @@ int main()
     int year;
     double total;
 
-    cout << "State Name: " << endl;
+    cout << "State Name: ";
     getline(cin, stateName);
-    cout << "Purchase amount: " << endl;
+    cout << "Purchase amount: ";
     cin >> purchaseAmount;
-    cout << "Provide the month: " << endl;
+    cout << "Provide the month: ";
     cin.ignore();
     getline(cin, month);
-    cout << "Provide the day: " << endl;
+    cout << "Provide the day: ";
     cin >> day;
-    cout << "Provide the year: " << endl;
+    cout << "Provide the year: ";
     cin >> year;
 
     // Check for valid state input out of 50 states
@@ -606,15 +606,12 @@ int main()
     {
     }
 
-    if (stateName == "Nebraska")
+    if (stateName == "North Dakota")
     {
-        total = purchaseAmount + (purchaseAmount * stateTaxRate_Nebraska) + (purchaseAmount * avgLocalTaxRate_Nebraska);
+        total = purchaseAmount + (purchaseAmount * stateTaxRate_North_Dakota) + (purchaseAmount * avgLocalTaxRate_North_Dakota);
         cout << fixed << showpoint << setprecision(2);
         cout << "Please pay a total of $" << total << endl;
         return 0;
-    }
-    else
-    {
     }
 
     if (stateName == "Ohio" && month == "August" && (day == 5 || day == 6 || day == 7))

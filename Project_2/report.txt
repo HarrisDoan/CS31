@@ -1,0 +1,186 @@
+Harris Doan: 605317270
+
+a.) I have a decent amount of prior coding experience in C++ as a transfer student however my CC experience compared to UCLA
+has been drastically different. When approaching this, I knew the basic set up just from reading the prompt and I had a clear
+idea of what I wanted to do. I thought of it sequentially first defining all my variables. Then prompt the user for inputs. I 
+did run into a problem with cin, but this was not until the very end when I was running test cases so, I'll discuss the problems
+during the intial coding development. Usually I think of if statements as treat them as false and have them prove true instead 
+of the opposite. So I tend to use  if ( ___ != ___ ) over if ( ____ == ____ ). However, when I was writing the gigantic if
+statement to check for the valid stateName input, for whatever reason I still haven't been able to figure out, a bunch of !=
+did not work for my case and left the programming outputting a "Invalid state!" even when it was correct. So the solution was
+a large if statement full of if( stateName == " " || stateName == "" ), where if it was true it would simply do nothing and
+an else statement containing the code for the cout << "Invalid state!" << endl; Originally, to check for capitalization I did
+a string to char_array using a new int len; and defining len as stateName.length(); and then using a for loop iterating through
+the new char_array. Something like char* char_array = new char[len + 1]; And since the length of the string would be the same
+length as the new char_array, I could just use length in my for loop. I used strcpy(char_array, stateName.c_str() ) to turn the
+string into an array. And then the for loop would just look at the first element of the array, char_array[0] and using the 
+isupper() function to check for uppercase or not. I then did this twice resetting my index at an empty space using isspace()
+and then checking that new index at char_array[i + 1] to check for the character right after the space. This allowed me to
+correctly check for capitalization for stateNames, however using the large if statements already made this obsolete. So I
+just omitted it from the code entirely. The rest of the code went quite smoothly up until I had to do the tax calculation itself.
+The issue I ran into was the 4 four states in alphabetical order turned out perfectly, however when it came to California
+it kept outputting the result for Arkansas. I realized this was an error in my if statements. Originally I had 
+if (stateName == ""  && month = "" && (day == "" || day == "") {} else {}. What I realized is that the first condition checked
+for the tax free days but totally ignored if the stateName was correct just the day wasn't a tax exemption day. I added an 
+else if (stateName == "" ) and the program worked perfectly. I then ran through the test cases from the instructions and I realized
+an error in my cin which I noted at the top. my cin for month did not take into account months typed in twice. So I changed cin 
+to getline(cin, month) however when it came to prompting the user to type in the month it would simply skip it and go straight
+to inputting the day. THis is when I added the cin.ignore() and then it finally worked smoothly. After many checks and running it
+through my own VSCode clang extension and the Linux Server's g31 compiler, I had finally ran all the example test cases in the
+instructions and it lead to the correct output. Some extra notes to add. I added a additional cin.fail() to each test for incorrect
+data types and used fixed << showpoint << setprecision(2) for accurate money outputs.
+
+b.) I simply ran all of the test cases in the instructions. The first was to see if the tax calculation was correct.
+Test 1:
+State Name: Texas
+Purchase amount: 30.56
+Provide the month: January
+Prove the day: 1
+Provide the year: 2021
+My code output: $33.06
+
+This showed that at least my calculation for taxes were correct.
+
+Test 2: invalid state name test
+State Name: texas
+Purchase amount: 30.56
+Provide the month: January
+Prove the day: 2
+Provide the year: 2020
+My code output: Invalid state!
+
+This show that the invalid state check was at least correct.
+
+Test 3: test for invalid amount where amount was negative
+
+State Name: Texas
+Purchase amount: -30.56
+Provide the month: January
+Prove the day: 1
+Provide the year: 2021
+My code output: "Invalid amount!"
+
+This showed that my test for invalid amount was correct.
+
+Test 4: test for invalid month name
+
+State Name: Texas
+Purchase amount: 30.56
+Provide the month: January
+Prove the day: 1
+Provide the year: 2021
+My code output: "Invalid month!"
+
+Originally in my code this failed due to cin >> month; instead of getline(cin, month). Adding the cin.ignore() also fixed the issue of
+the terminal not prompting the user to put in the month at all. This was probably the last issue I ran into when do this project.
+
+Test 5: test for invalid day
+
+State Name: Texas
+Purchase amount: 30.56
+Provide the month: February
+Prove the day: -10
+Provide the year: 2000
+My code output: "Invalid day!"
+
+This also showed that my check for day validity worked well.
+
+Test 6: test for correct year input
+
+State Name: Texas
+Purchase amount: 30.56
+Provide the month: March
+Prove the day: 3
+Provide the year: -101
+My code output: "Invalid year!"
+
+This also showed that my check for valid year was working properly.
+
+Test 7: test for multiple invalid statements, but only outputs the first one
+
+State Name: Texas
+Purchase amount: 30.56
+Provide the month: 10
+Prove the day: -101
+Provide the year: -101
+My code output: "Invalid month!"
+
+This was a big test for me to make sure that it was checking for validity sequentially and only outputting the first one. It worked.
+
+Test 8: test for both letters being capitalized in state name
+
+State Name: Soth dakota
+Purchase amount: 30.56
+Provide the month: January
+Prove the day: 2
+Provide the year: 2020
+My code output: "Invalid state!"
+
+This also worked flawlessly. Not really because there was code that specifically checked for capitalization but because "Soth dakota" != "South Dakota"
+so it would've outputted incorrected state anyways.
+
+Test 9: test for valid amount
+
+State Name: Texas
+Purchase amount: 0
+Provide the month: January
+Prove the day:2
+Provide the year: 2020
+My code output: "Invalid amount!"
+
+Since a valid amount has to be greated than 0, the output was correct.
+
+Test 10: test for valid month spelling, but first leter not capitalized
+
+State Name: Georgia
+Purchase amount: 30.56
+Provide the month: march
+Prove the day: 2
+Provide the year: 2020
+My code output: "Invalid month!"
+
+This check also worked flawlessly. Not really due to a code checking capitalization, but == equivalency check 
+
+Test 11: Check for both words spelled right in state name but the first letter in the first word isnt
+with additional incorrect amount, day
+
+State Name: north Carolina
+Purchase amount: -9
+Provide the month: Feburary
+Prove the day: -10
+Provide the year: 2000
+My code output: "Invalid state!"
+
+This worked perfect and shot out only the first error which was the state Name.
+
+Test 12: test for a year greater than 2025
+
+State Name: Texas
+Purchase amount: 30.56
+Provide the month: March
+Prove the day: 3
+Provide the year: 2028
+My code output: "Invalid year!"
+
+This worked perfectly as well.
+
+Test 13: test for incorrect month with additional incorrect day, and year.
+
+State Name: Texas
+Purchase amount: 30.56
+Provide the month: jan
+Prove the day: -101
+Provide the year: 2028
+My code output: "Invalid month!"
+
+This worked perfectly as well. 
+
+
+After running a lot of the test cases from the instructions, I was pretty confident that my program was working properly.
+There were plenty more test cases as I was coding, but these were the test cases for the polished program. Thank you!
+
+
+Update 1/29/2023: Resubmitted after changing the stateTaxRate and avgLocalTaxRate as being defined variables that are called to
+in the if statements when calculating the total. Also ran the same 13 test cases as before and the same results were seen.
+
+
