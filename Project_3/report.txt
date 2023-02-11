@@ -14,9 +14,12 @@ Test 11: Next false string. Should return false and -1 for all values. Testing f
 Test 12: Valid string with a 0 on p or d. Should return true and correct calculations. Testing for: allows for a 0 on p or d value if there are no leading zeros and the sum is correct.
 Test 13: Valid string with a 0 on p or d. Should return true and correct calculations. Testing for: allows for a 0 on p or d value if there are no leading zeros and the sum is correct.
 Test 14: Long string test but the final string Q4p2d1 is invalid. Should return false and -1 for all values. Testing for: regardless of how long the string becomes. Should return false just because 1 value is wrong.
+Test 15: Test for a really complicated long string and check to make sure it outputs the correct value. Testing for: correct output
+Test 16: Empty string Qpd. Should return false. Testing for: invalid string
+Test 17: At first glance, looks like a valid string. But I added a space at the end of the input. This should return false. Testing for: To make sure if a string with a space is detected a false output occurs.
 
 Last login: Mon Feb  6 04:06:41 on ttys001
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q2p1d1
 isValidQC returns: true
 passQC returns: 1
@@ -24,7 +27,7 @@ defectQC returns: 1
 batches returns: 1
 totalQC returns: : 2
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q2d1p1Q5p3d2
 isValidQC returns: true
 passQC returns: 4
@@ -32,7 +35,7 @@ defectQC returns: 3
 batches returns: 2
 totalQC returns: : 7
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q1p0d1Q1d0p1
 isValidQC returns: true
 passQC returns: 1
@@ -40,7 +43,7 @@ defectQC returns: 1
 batches returns: 2
 totalQC returns: : 2
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q5d2p3
 isValidQC returns: true
 passQC returns: 3
@@ -48,7 +51,7 @@ defectQC returns: 2
 batches returns: 1
 totalQC returns: : 5
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 q1p0d1
 isValidQC returns: false
 passQC returns: -1
@@ -56,7 +59,7 @@ defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q1pd1
 isValidQC returns: false
 passQC returns: -1
@@ -64,7 +67,7 @@ defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q1p1d
 isValidQC returns: false
 passQC returns: -1
@@ -72,7 +75,7 @@ defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q1p0d1   asdfR
 isValidQC returns: false
 passQC returns: -1
@@ -80,7 +83,7 @@ defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q5p00003d0002
 isValidQC returns: false
 passQC returns: -1
@@ -88,7 +91,7 @@ defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q5p0d0
 isValidQC returns: false
 passQC returns: -1
@@ -96,7 +99,7 @@ defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q0p0d0
 isValidQC returns: false
 passQC returns: -1
@@ -104,7 +107,7 @@ defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q5p0d5
 isValidQC returns: true
 passQC returns: 0
@@ -112,7 +115,7 @@ defectQC returns: 5
 batches returns: 1
 totalQC returns: : 5
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q7p7d0
 isValidQC returns: true
 passQC returns: 7
@@ -120,13 +123,40 @@ defectQC returns: 0
 batches returns: 1
 totalQC returns: : 7
 
-harrisdoan@s-164-67-81-114 Project_3_Real % ./qctest
+harrisdoan@s-164-67-81-114 Project_3 % ./qctest
 Q10p5d5Q20p10d10Q4p2d1
 isValidQC returns: false
 passQC returns: -1
 defectQC returns: -1
 batches returns: -1
 totalQC returns: : -1
+
+harrisdoan@wifi-131-179-34-49 Project_3 % ./qctest
+Q55p20d35Q10000p5000d5000Q17p7d10Q2048p1024d1024
+isValidQC returns: true
+passQC returns: 6051
+defectQC returns: 6069
+batches returns: 4
+totalQC returns: : 12120
+
+harrisdoan@wifi-131-179-34-49 Project_3 % ./qctest
+Qpd
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+
+harrisdoan@wifi-131-179-34-49 Project_3 % ./qctest
+Q10p5d5Q30p15d15     <== there is a space after this string
+isValidQC returns: false
+passQC returns: -1
+defectQC returns: -1
+batches returns: -1
+totalQC returns: : -1
+
+
+
 
 Brief Description of Obstacles:
 For a brief description I had nearly 1,000,000 different obstacles to overcome when looking at this project. Originally I was overcomplicating the process A BUNCH.

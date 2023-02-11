@@ -1,3 +1,6 @@
+// Name: Harris Doan
+// UID: 605317270
+
 #include <iostream>
 #include <string>
 #include <cassert>
@@ -21,7 +24,7 @@ int quantities_value(string result)
 {
     int quant_value = 0;
 
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'Q')
         {
@@ -41,7 +44,7 @@ int pass_value(string result)
 {
     int pass_value = 0;
 
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'p')
         {
@@ -62,7 +65,7 @@ int defect_value(string result)
 {
     int defects_value = 0;
 
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'd')
         {
@@ -86,7 +89,7 @@ int total(string result)
 bool isValidQC(string result)
 {
     // Checks if the first element in the string are valid
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[0] != 'Q')
         {
@@ -95,7 +98,7 @@ bool isValidQC(string result)
     }
 
     // Checks for spaces
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == ' ')
         {
@@ -104,7 +107,7 @@ bool isValidQC(string result)
     }
 
     // Checks to see if subsequent Q strings are valid, doesn't test for leading 0's for P and D
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'Q')
         {
@@ -116,7 +119,7 @@ bool isValidQC(string result)
     }
 
     // If p is followed by a letter instead of a number its false ie. Q1pd1
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'p')
         {
@@ -128,7 +131,7 @@ bool isValidQC(string result)
     }
 
     // If d is followed by a letter instead of a number its false ie. Q1dp1
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'd')
         {
@@ -140,7 +143,7 @@ bool isValidQC(string result)
     }
 
     // If d is towards the end of a string and it is followed by a null character it is false
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'd')
         {
@@ -152,7 +155,7 @@ bool isValidQC(string result)
     }
 
     // If p is towards the end of a string and it is followed by a null character it is false
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'p')
         {
@@ -163,8 +166,8 @@ bool isValidQC(string result)
         }
     }
 
-    // Doesn't allow for leading 0's on P or a digit after a 0. Q7p07d7 = false;
-    for (int i = 0; i < result.size(); i++)
+    // Doesn't allow for leading 0's on p or a digit after a 0. Q7p07d7 = false;
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'p')
         {
@@ -178,10 +181,40 @@ bool isValidQC(string result)
         }
     }
 
-    // Does not allow for excessive leading 0's on D
-    for (int i = 0; i < result.size(); i++)
+    // Doesn't allow for leading 0's on d or a digit after a 0. Q7p7d07 = false;
+    for (int i = 0; i < result.length(); i++)
     {
         if (result[i] == 'd')
+        {
+            if (result[i + 1] == '0')
+            {
+                if (result[i + 2] == '1' || result[i + 2] == '2' || result[i + 2] == '3' || result[i + 2] == '4' || result[i + 2] == '5' || result[i + 2] == '6' || result[i + 2] == '7' || result[i + 2] == '8' || result[i + 2] == '9' || result[i + 2] == '0')
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+    // Does not allow for excessive leading 0's on d
+    for (int i = 0; i < result.length(); i++)
+    {
+        if (result[i] == 'd')
+        {
+            if (result[i + 1] == '0')
+            {
+                if (result[i + 2] == '0')
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+    // Does not allow for excessive leading 0's on p
+    for (int i = 0; i < result.length(); i++)
+    {
+        if (result[i] == 'p')
         {
             if (result[i + 1] == '0')
             {
@@ -250,7 +283,7 @@ int batches(string result)
     int batches = 0;
 
     // Each time a Q is read in the string = another batch added. Batches simply increments up when a Q is detected
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < result.length(); i++)
         if (result[i] == 'Q')
             batches++;
     return batches;
@@ -259,7 +292,7 @@ int batches(string result)
 int main()
 {
     string result;
-    getline(cin, result);
+    getline(cin, result); // use getline not cin so that cin doesn't ignore whitespaces. ie: Q10p5d5 asdas. Only 'Q10p5d5' would be read giving a valid output which is incorrect.
     cout.setf(ios::boolalpha);
     cout << "isValidQC returns: " << isValidQC(result) << endl;
     cout << "passQC returns: " << passQC(result) << endl;
