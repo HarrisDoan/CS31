@@ -74,6 +74,7 @@ int countFloatingPointValues(const string array[], int n)
 
     int count = 0;
 
+    /*
     for (int i = 0; i < n; i++)
     {
         const int length = array[i].length();
@@ -81,12 +82,28 @@ int countFloatingPointValues(const string array[], int n)
         strcpy(char_array, array[i].c_str());
         for (int i = 0; i < length; i++)
         {
-            if ((char_array[i] == '.') && (char_array[i] != '+') && (char_array[i] != '-'))
+            if (char_array[i] == '.')
             {
                 count++;
             }
         }
     }
+    */
+
+   string plus = "+"; //Check to see if a + sign is in the string
+   string minus = "-";  //Checks to see if a - sign is in the string
+   string decimal = "."; //Checks to see if a optional decimal point
+
+
+   for(int i = 0; i < n; i++)
+   {
+    string check = array[i];
+    if( strstr(check.c_str(), decimal.c_str()) && !strstr(check.c_str(), plus.c_str()) && !strstr(check.c_str(), minus.c_str()) )
+    {
+        count++;
+    }
+   
+   }
 
     string copy_array[n];
     for (int i = 0; i < n; i++)
@@ -143,7 +160,7 @@ int shiftLeft(string array[], int n, int amount, string placeholder)
 
 int main()
 {
-    string data[5] = {"mamaBbcca", "mamaBbcca", "tyrion,", "+98.76", "12"};
+    string data[5] = {"mamaBbcca", "mamaBbcca", "tyrion,", "98.76", "1.20"};
     string test[3] = {"aaa", "bbb", "cCc"};
     string folks[8] = {"samwell", "jon", "margaery", "daenerys", "tyrion", "sansa", "magdalena", "jon"};
     string a[6] = {"123", "456", "789", "gamma", "beta", "delta"};
@@ -155,7 +172,10 @@ int main()
     cout << hasNoCapitals(test, 3) << endl;
     cout << hasNoCapitals(folks, 8) << endl;
     cout << countFloatingPointValues(data, 5) << endl;
-    */
+    
     cout << locateMaximum(a, 3) << endl;
     cout << locateMaximum(c, 0) << endl;
+    */
+   cout << countFloatingPointValues(data, 5) << endl;
+
 }
