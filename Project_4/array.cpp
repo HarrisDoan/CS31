@@ -63,6 +63,11 @@ int locateMaximum(const string array[], int n)
     }
 }
 
+bool isFloat(const string array[], int n)
+{
+    // To be a valid float: must only contain 1 decimal, must be comprised of digits, cannot have a leading + or -
+}
+
 // Same idea as searching for capitals but instead searches for a decimal.
 int countFloatingPointValues(const string array[], int n)
 {
@@ -73,22 +78,6 @@ int countFloatingPointValues(const string array[], int n)
     }
 
     int count = 0;
-
-    /*
-    for (int i = 0; i < n; i++)
-    {
-        const int length = array[i].length();
-        char *char_array = new char[length + 1];
-        strcpy(char_array, array[i].c_str());
-        for (int i = 0; i < length; i++)
-        {
-            if (char_array[i] == '.')
-            {
-                count++;
-            }
-        }
-    }
-    */
 
     string plus = "+";    // Check to see if a + sign is in the string
     string minus = "-";   // Checks to see if a - sign is in the string
@@ -156,12 +145,24 @@ int shiftLeft(string array[], int n, int amount, string placeholder)
         return -1;
     }
 
+    // Case in which n is less than amount, the entirety of the array is filled with the placeholder
+    if (n < amount)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            array[i] = placeholder;
+            cout << array[i] << endl;
+        }
+    }
+
     string new_array[n];
+
+    return amount;
 }
 
 int main()
 {
-    string data[5] = {"mamaBbcca", "mamaBbcca", "tyrion,", "98.7.6", "1.20"};
+    string data[5] = {"mamaBbcca", "mamaBbcca", "tyrion,", "98.7.6", "120"};
     string test[3] = {"aaa", "bbb", "cCc"};
     string folks[8] = {"samwell", "jon", "margaery", "daenerys", "tyrion", "sansa", "magdalena", "jon"};
     string a[6] = {"123", "456", "789", "gamma", "beta", "delta"};
@@ -178,4 +179,21 @@ int main()
     cout << locateMaximum(c, 0) << endl;
     */
     cout << countFloatingPointValues(data, 5) << endl;
+    // cout << shiftLeft(data, 5, 10, "foo") << endl;
 }
+
+/*
+for (int i = 0; i < n; i++)
+{
+    const int length = array[i].length();
+    char *char_array = new char[length + 1];
+    strcpy(char_array, array[i].c_str());
+    for (int i = 0; i < length; i++)
+    {
+        if (char_array[i] == '.')
+        {
+            count++;
+        }
+    }
+}
+*/
