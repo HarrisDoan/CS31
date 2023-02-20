@@ -37,7 +37,7 @@ string returnMax(string array[], int n)
     return search;
 }
 
-// Create a copy of the array to sort using the created sort function and then search for the maximum
+// Create a copy of the array to sort using the created sort function and then search for the maximum, returns the index of the maximum
 int locateMaximum(const string array[], int n)
 {
 
@@ -90,20 +90,18 @@ int countFloatingPointValues(const string array[], int n)
     }
     */
 
-   string plus = "+"; //Check to see if a + sign is in the string
-   string minus = "-";  //Checks to see if a - sign is in the string
-   string decimal = "."; //Checks to see if a optional decimal point
+    string plus = "+";    // Check to see if a + sign is in the string
+    string minus = "-";   // Checks to see if a - sign is in the string
+    string decimal = "."; // Checks to see if a optional decimal point
 
-
-   for(int i = 0; i < n; i++)
-   {
-    string check = array[i];
-    if( strstr(check.c_str(), decimal.c_str()) && !strstr(check.c_str(), plus.c_str()) && !strstr(check.c_str(), minus.c_str()) )
+    for (int i = 0; i < n; i++)
     {
-        count++;
+        string check = array[i];
+        if (strstr(check.c_str(), decimal.c_str()) && !strstr(check.c_str(), plus.c_str()) && !strstr(check.c_str(), minus.c_str()))
+        {
+            count++;
+        }
     }
-   
-   }
 
     string copy_array[n];
     for (int i = 0; i < n; i++)
@@ -140,13 +138,16 @@ bool hasNoCapitals(const string array[], int n)
 }
 
 // data[5] = {"mamaBbcca", "mamaBbcca", "tyrion,", "98.76", "12"};
-//                i           i+2         i+3       i+4     i+5
+//                0            1            2         3       4
 // data[5] = shiftLeft( data, 5, 2, "foo" )
 // 2 = movement to the left
 // foo = placeholder
 //
 // shiftLeft( data, 5, 2, "foo" ) = { "12", "98.76", "tyrion", "foo", "foo" }
-//
+//                                      0       1       2        3      4
+// 12:      4 -> 0
+// 98.76:   3 -> 1
+// tyrion:  2 -> 2
 // shiftLeft( data, 5, 10, "bar" ) = {"bar", "bar", "bar", "bar", "bar"}
 int shiftLeft(string array[], int n, int amount, string placeholder)
 {
@@ -160,7 +161,7 @@ int shiftLeft(string array[], int n, int amount, string placeholder)
 
 int main()
 {
-    string data[5] = {"mamaBbcca", "mamaBbcca", "tyrion,", "98.76", "1.20"};
+    string data[5] = {"mamaBbcca", "mamaBbcca", "tyrion,", "98.7.6", "1.20"};
     string test[3] = {"aaa", "bbb", "cCc"};
     string folks[8] = {"samwell", "jon", "margaery", "daenerys", "tyrion", "sansa", "magdalena", "jon"};
     string a[6] = {"123", "456", "789", "gamma", "beta", "delta"};
@@ -172,10 +173,9 @@ int main()
     cout << hasNoCapitals(test, 3) << endl;
     cout << hasNoCapitals(folks, 8) << endl;
     cout << countFloatingPointValues(data, 5) << endl;
-    
+
     cout << locateMaximum(a, 3) << endl;
     cout << locateMaximum(c, 0) << endl;
     */
-   cout << countFloatingPointValues(data, 5) << endl;
-
+    cout << countFloatingPointValues(data, 5) << endl;
 }
