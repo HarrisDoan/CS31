@@ -188,25 +188,10 @@ int main()
 
     cout << locateMaximum(a, 3) << endl;
     cout << locateMaximum(c, 0) << endl;
-    */
-    // cout << countFloatingPointValues(data, 5) << endl;
-    // cout << shiftLeft(data, 5, 3, "foo") << endl;
-    // cout << shiftLeft(data, 5, 10, "foo");
-    // cout << shiftLeft(data, 5, 0, "foo") << endl;
-}
 
-/*
-for (int i = 0; i < n; i++)
-{
-    const int length = array[i].length();
-    char *char_array = new char[length + 1];
-    strcpy(char_array, array[i].c_str());
-    for (int i = 0; i < length; i++)
-    {
-        if (char_array[i] == '.')
-        {
-            count++;
-        }
-    }
+    cout << countFloatingPointValues(data, 5) << endl;
+    cout << shiftLeft(data, 5, 3, "foo") << endl;
+    cout << shiftLeft(data, 5, 10, "foo");
+    cout << shiftLeft(data, 5, 0, "foo") << endl;
+    */
 }
-*/
