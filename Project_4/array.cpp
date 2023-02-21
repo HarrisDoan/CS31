@@ -5,8 +5,6 @@
 
 using namespace std;
 
-void sort_string(string array[], int n);
-string returnMax(string array[], int n);
 int locateMaxium(const string array[], int n);
 int countFloatingPointValues(const string array[], int n);
 bool hasNoCapitals(const string array[], int n);
@@ -15,30 +13,7 @@ bool validInteger(string array);
 bool validFloat(string array);
 // int countDecimal(string array); (see important notice)
 
-// Void function to sort array
-void sort_string(string array[], int n)
-{
-    for (int i = 0; i < n - 1; i++)
-    {
-        for (int j = i + 1; j < n; j++)
-        {
-            if (array[j] < array[i])
-            {
-                string temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-        }
-    }
-}
-
-// Returns the maximum string
-string returnMax(string array[], int n)
-{
-    sort_string(array, n);
-    string search = array[n - 1];
-    return search;
-}
+// Start of Code:
 
 // Similar to Project 3 with validQC, I can repeat the same logic with a validInteger
 bool validInteger(string array)
@@ -56,8 +31,7 @@ bool validInteger(string array)
 
     // Initialize a pointer and use strtol to convert string to long int.
     char *p;
-    long check;
-    check = strtol(array.c_str(), &p, 10);
+    strtol(array.c_str(), &p, 10);
 
     // if my pointer points to the end of the string, that means the entire string was converted properly converted to a integer,
     // this means the entire string must be a valid integer. Therefore, if *p == 0, then I can return true;
@@ -79,8 +53,7 @@ bool validFloat(string array)
 
     // Initialize a pointer and use strtod to convert string to a double (similar enought to a float).
     char *p;
-    double check;
-    check = strtod(array.c_str(), &p);
+    strtod(array.c_str(), &p);
 
     // if my pointer points to the end of the string which means the entire string was converted to a double, then the entire string must
     // be a valid float. Therefore, if *p is 0, then I can return true;
@@ -174,21 +147,16 @@ int locateMaximum(const string array[], int n)
         return -1;
     }
 
-    string copy_array[n];
-    for (int i = 0; i < n; i++)
+    int index = 0;
+    for (int i = 0; i < n - 1; i++)
     {
-        copy_array[i] = array[i];
+        if (array[i] < array[i + 1])
+            index = i + 1;
+        else
+            index = i;
     }
 
-    string search = returnMax(copy_array, n);
-
-    for (int i = 0; i < n; i++)
-    {
-        if (array[i] == search)
-        {
-            return i;
-        }
-    }
+    return index;
 }
 
 // Same idea as searching for capitals but instead searches for a decimal.
@@ -309,9 +277,8 @@ int main()
 
     // Add Code Here:
 
+    // Test Cases:
     /*
-    Test Cases:
-    cout << returnMax(test, 3) << endl;
     cout << locateMaximum(test, 3) << endl;
     cout << hasNoCapitals(test, 3) << endl;
     cout << hasNoCapitals(folks, 8) << endl;
@@ -323,7 +290,7 @@ int main()
     cout << shiftLeft(data, 5, 10, "foo");
     cout << shiftLeft(data, 5, 0, "foo") << endl;
     cout << shiftLeft(data, 5, 1, "PERFECT") << endl;
-    cout << countFloatingPointValues(data, 5) << endl;
+    cout << countFloatingPointValues(a, 6) << endl;
     cout << validFloat("12.12") << endl;
     cout << validInteger("18") << endl;
     */
