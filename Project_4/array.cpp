@@ -257,41 +257,28 @@ int shiftLeft(string array[], int n, int amount, string placeholder)
         count++;
     }
 
-    // If I want to print the shifted array use this: Can remove if not necessary
+    //                      ******IMPORTANT NOTICE********
+    // If you want to print the shifted array, remove comments.
+    /*
     for (int i = 0; i < n; i++)
     {
         cout << array[i] << " ";
     }
+    */
 
     return count;
 }
 
 int main()
 {
+    /*
     string data[5] = {"mamaBbcca", "mamaBbcca", "12", "98.76", "tyrion"};
     string test[3] = {"aaa", "bbb", "cCc"};
     string folks[8] = {"samwell", "jon", "margaery", "daenerys", "tyrion", "sansa", "magdalena", "jon"};
     string a[6] = {"123", "456", "789", "gamma", "beta", "delta"};
     string c[0] = {};
-    cout.setf(ios::boolalpha);
-
-    // Add Code Here:
-
-    // Test Cases:
-    /*
-    cout << locateMaximum(test, 3) << endl;
-    cout << hasNoCapitals(test, 3) << endl;
-    cout << hasNoCapitals(folks, 8) << endl;
-    cout << countFloatingPointValues(data, 5) << endl;
-    cout << locateMaximum(a, 3) << endl;
-    cout << locateMaximum(c, 0) << endl;
-    cout << countFloatingPointValues(data, 5) << endl;
-    cout << shiftLeft(data, 5, 3, "foo") << endl;
-    cout << shiftLeft(data, 5, 10, "foo");
-    cout << shiftLeft(data, 5, 0, "foo") << endl;
-    cout << shiftLeft(data, 5, 1, "PERFECT") << endl;
-    cout << countFloatingPointValues(a, 6) << endl;
-    cout << validFloat("12.12") << endl;
-    cout << validInteger("18") << endl;
     */
+
+    cout.setf(ios::boolalpha);
+    // Add Code Here:
 }
