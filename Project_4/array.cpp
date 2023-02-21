@@ -61,9 +61,6 @@ bool validInteger(string array)
 
     // if my pointer points to the end of the string, that means the entire string was converted properly converted to a integer,
     // this means the entire string must be a valid integer. Therefore, if *p == 0, then I can return true;
-    // Ex: "12123asb" the pointer would not point to the end of the string since it stops in the middle at a since letters dont get converted.
-    // For this example: *p != 0. So I can return false.
-
     if (*p == 0)
     {
         return true;
