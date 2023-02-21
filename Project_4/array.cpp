@@ -13,6 +13,7 @@ bool hasNoCapitals(const string array[], int n);
 int shiftLeft(string array[], int n, int amount, string placeholder);
 bool validInteger(string array);
 bool validFloat(string array);
+// int countDecimal(string array); (see important notice)
 
 // Void function to sort array
 void sort_string(string array[], int n)
@@ -79,12 +80,6 @@ bool validFloat(string array)
         return false;
     }
 
-    // for our case, a valid input cannot have a leading - or +
-    if (((!isdigit(array[0])) && (array[0] == '-') && (array[0] == '+')))
-    {
-        return false;
-    }
-
     // Initialize a pointer and use strtod to convert string to a double (similar enought to a float).
     char *p;
     double check;
@@ -99,6 +94,79 @@ bool validFloat(string array)
 
     return false;
 }
+
+//                                          ***************** IMPORTANT PLEASE READ *********************
+// If the use of pointers for the counting float is not allowed. I have also written an alternative code that uses a search technique to
+// determine whether or not is a integer/float. This also produces the exact same result as my code utilizing pointers
+/*
+
+bool validInteger(string array)
+{
+    if (array.empty())
+    {
+        return false;
+    }
+
+    // for our case, a valid input cannot have a leading - or +
+    if (((!isdigit(array[0])) && (array[0] == '-') && (array[0] == '+')))
+    {
+        return false;
+    }
+
+    string check = "";
+    for (int i = 0; i < array.size(); i++)
+    {
+        if (isdigit(array[i]))
+        {
+            check += array[i];
+        }
+    }
+
+    if (check.size() == array.size())
+    {
+        return true;
+    }
+}
+
+int countDecimal(string array)
+{
+    int count = 0;
+    for (int i = 0; i < array.size(); i++)
+    {
+        if (array[i] == '.')
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+bool validFloat(string array)
+{
+    if (array.empty())
+    {
+        return false;
+    }
+
+    string check = "";
+
+    for (int i = 0; i < array.size(); i++)
+    {
+        if (isdigit(array[i]))
+        {
+            check += array[i];
+        }
+    }
+
+    if (check.size() == array.size() - 1)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+*/
 
 // Create a copy of the array to sort using the created sort function and then search for the maximum, returns the index of the maximum
 int locateMaximum(const string array[], int n)
