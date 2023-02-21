@@ -1,0 +1,54 @@
+Harris Doan
+UCLA ID: 605317270
+
+a.) I ran into a lot of obstacles. First being the locateMaximum. I originally used the <algorithm> header to sort and and find the largest value.
+When I found out that we weren't allowed to use it, I just made my own sort function and did the same thing. My biggest difficuly has finding a way to
+take in account the number of floating point numbers. For our case, an integer could count as one and a certain type of string could as well. If the 
+element did not have a leading + or - then it was valid. So instead of trying to make it a lot harder on myself, I just recalled what we did in Project 3.
+Using that logic, I decided to create two bool functions similar to how we did isValidQC, but instead validInteger and validFloat. Since an integer was 
+a valid parameter to count towards, I knew instinctually that if I were to iterate across the length of the string adding anything that is a digit
+into a new temporary string. That if the size of the temporary string is the same size as the array string, then it was a valid integer. Since integers
+only comprise of digits, a string such as "1233" should return a size of 4 and when iterating across the length and pulling the digits into a temporary string
+that temp_string.size() would also return 4. Since anything that wasn't a digit would be omitted the difference in sizes would easily give away that it wasn't
+a proper integer. I did this same thinking with the float except this time I added the restriction that the size had to be 1 different. An easy way to figure out
+if a string is a valid float is to do the same as the integer except compare the size of the temporary string and the array.size() - 1. The reason I subtract 1
+is because what is the only difference between a float and an integer? There is only a single decimal in it. If there were multiple decimals, the size of
+the temp string would not equal the array.size() - 1. This meaning it was not a valid float. Then in my counting function, I just added the addition constraint that 
+as long as the string did not contain a + or - anywhere in it, it was valid. This however, was my second approach. My original solution simply used
+strtol and strtod from the string library. One allowing me a string to long int conversion using a string input, pointer, and base 10. This made it much easier.
+If I was converting the string to an integer. If the pointer was at the end of the string, then the entire string was successfully converted to a integer.
+If the string was "123" the pointer would point at the end signifying that the entirety of the string was comprised of valid digits that formed an integer.
+If a string such as "123asd" were to come up, the pointer would not point to the end meaning this was not a valid integer. This was the same premise for 
+strtod for the float values. However, since I wasn't sure or not that using a pointer and strtol, and strtod was a valid solution, I came up with both solutions
+just in case.
+
+b.) This time I won't right out the long long terminal page of test cases. I'll simply list them.
+
+    string data[5] = {"mamaBbcca", "mamaBbcca", "12", "98.76", "tyrion"};
+    string test[3] = {"aaa", "bbb", "cCc"};
+    string folks[8] = {"samwell", "jon", "margaery", "daenerys", "tyrion", "sansa", "magdalena", "jon"};
+    string a[6] = {"123", "456", "789", "gamma", "beta", "delta"};
+    string c[0] = {};
+    cout.setf(ios::boolalpha);
+    
+    Test Cases:
+    cout << returnMax(test, 3) << endl;                     test to make sure my returnMax function worked properly.
+    cout << locateMaximum(test, 3) << endl;                 test for the correct locatedMaximum function.
+    cout << hasNoCapitals(test, 3) << endl;                 Threw one capital C in to detect whether or not my function would fail to detect it. Worked perfectly.
+    cout << hasNoCapitals(folks, 8) << endl;                Same as above test but decided to use a string array that was given in the spec.
+    cout << countFloatingPointValues(data, 5) << endl;      testing my countFloat function. One of many.
+    cout << locateMaximum(a, 3) << endl;                    Test from a n smaller than the size of the array. Returns index 2 for "789" which is correct.
+    cout << locateMaximum(c, 0) << endl;                    Test on an empty array of strings
+    cout << countFloatingPointValues(data, 5) << endl;      Tested it again after adding the validFloat and validInteger.
+    cout << shiftLeft(data, 5, 3, "foo") << endl;           Testing for proper shiftLeft function. Test from spec. Make sure it did the same as the spec.
+    cout << shiftLeft(data, 5, 10, "foo");                  Same as above but testing where the amount is larger than n. So the entire array becomes the placeholder. Spec test.
+    cout << shiftLeft(data, 5, 0, "foo") << endl;           Test where the amount <= 0, there returning a -1
+    cout << shiftLeft(data, 5, 1, "PERFECT") << endl;       My own personal test to make sure it was still working (using second solution instead of first)
+    cout << countFloatingPointValues(data, 5) << endl;      Final countFloatingPointValues test and it properly returned 2.
+    cout << validFloat("12.12") << endl;                    Final 2 tests were to make sure a valid float would return true. It did
+    cout << validInteger("18") << endl;                     Final test was to make sure a valid integer would return true. It 
+
+    A lot of the test were repeated due to me coming up with two solutions for the countingFloatingPointValues. So I was testing to make sure the results matched up.
+    If they matched up then everything I implemened thus far was working perfectly. Mine happened to work flawlessly.
+
+

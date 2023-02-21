@@ -306,21 +306,24 @@ int main()
     string a[6] = {"123", "456", "789", "gamma", "beta", "delta"};
     string c[0] = {};
     cout.setf(ios::boolalpha);
+
     /*
+    Test Cases:
     cout << returnMax(test, 3) << endl;
     cout << locateMaximum(test, 3) << endl;
     cout << hasNoCapitals(test, 3) << endl;
     cout << hasNoCapitals(folks, 8) << endl;
     cout << countFloatingPointValues(data, 5) << endl;
-
     cout << locateMaximum(a, 3) << endl;
     cout << locateMaximum(c, 0) << endl;
-
     cout << countFloatingPointValues(data, 5) << endl;
     cout << shiftLeft(data, 5, 3, "foo") << endl;
     cout << shiftLeft(data, 5, 10, "foo");
     cout << shiftLeft(data, 5, 0, "foo") << endl;
+    cout << shiftLeft(data, 5, 1, "PERFECT") << endl;
+    cout << countFloatingPointValues(data, 5) << endl;
+    cout << validFloat("12.12") << endl;
+    cout << validInteger("18") << endl;
     */
-    // cout << shiftLeft(data, 5, 1, "PERFECT") << endl;
-    // cout << countFloatingPointValues(data, 5) << endl;
+    cout << locateMaximum(a, 3) << endl;
 }
