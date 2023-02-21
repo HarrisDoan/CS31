@@ -307,6 +307,8 @@ int main()
     string c[0] = {};
     cout.setf(ios::boolalpha);
 
+    // Add Code Here:
+
     /*
     Test Cases:
     cout << returnMax(test, 3) << endl;
@@ -325,5 +327,4 @@ int main()
     cout << validFloat("12.12") << endl;
     cout << validInteger("18") << endl;
     */
-    cout << locateMaximum(a, 3) << endl;
 }
