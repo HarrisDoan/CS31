@@ -138,7 +138,7 @@ bool validFloat(string array)
 
 */
 
-// Create a copy of the array to sort using the created sort function and then search for the maximum, returns the index of the maximum
+// Compare each element of the string. Return the index of the largest element.
 int locateMaximum(const string array[], int n)
 {
 
@@ -159,7 +159,7 @@ int locateMaximum(const string array[], int n)
     return index;
 }
 
-// Same idea as searching for capitals but instead searches for a decimal.
+// Refer to validFloat and validDecimal. If both are true and they don't contain a + -, then it is a counted.
 int countFloatingPointValues(const string array[], int n)
 {
 
@@ -257,7 +257,7 @@ int shiftLeft(string array[], int n, int amount, string placeholder)
         count++;
     }
 
-    //                      ******IMPORTANT NOTICE********
+    //              ******IMPORTANT NOTICE********
     // If you want to print the shifted array, remove comments.
     /*
     for (int i = 0; i < n; i++)
