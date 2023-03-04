@@ -1,0 +1,87 @@
+1.) Since most of the code and the classes and functions were already defined for us in the technical specifications there wasn't that many obstacles
+to overcome initially. Briefly the most difficult thing for me was forgetting the #ifndef and #define because I created my project initially in VSCode.
+However, I was wondering why nothing was working then I switched over to Xcode after looking at the Piazza comments from other classmates. So when
+creating the header file there it automatically creates the #ifndef and #define and thats when it clicked that I had just overlooked the first step.
+The next difficulty was no one's fault but my own. I was trying to figure out how to run the code in g31 off the Linux server, however it wouldn't work.
+I then tried the command line: "g31 main.cpp PlaneFlight.h PlaneFlight.cpp FrequentFlyerAccount.h FrequentFlyerAccount.cpp" And this allowed it to compile
+successfully. Then I finally decided to open my eyes and read the text at the bottom of the spec and saw that the command was already given... So I double
+checked using "g31 -c PlaneFlight.cpp", "g31 -c FrequentFlyerAccount.cpp", and "g31 -c main.cpp". It worked exactly the same. 
+
+
+Terminal Results:
+[harris@lnxsrv07 ~/CS31/Project_5]$ ls
+FrequentFlyerAccount.cpp  main.cpp         PlaneFlight.h
+FrequentFlyerAccount.h    PlaneFlight.cpp  PlaneFlight.h.gch
+[harris@lnxsrv07 ~/CS31/Project_5]$ g31 PlaneFlight.cpp
+/lib/../lib64/crt1.o: In function `_start':
+(.text+0x20): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+[harris@lnxsrv07 ~/CS31/Project_5]$ ls
+FrequentFlyerAccount.cpp  main.cpp         PlaneFlight.h
+FrequentFlyerAccount.h    PlaneFlight.cpp  PlaneFlight.h.gch
+[harris@lnxsrv07 ~/CS31/Project_5]$ rm PlaneFlight.h.gch
+[harris@lnxsrv07 ~/CS31/Project_5]$ ls
+FrequentFlyerAccount.cpp  main.cpp         PlaneFlight.h
+FrequentFlyerAccount.h    PlaneFlight.cpp
+[harris@lnxsrv07 ~/CS31/Project_5]$ g31 Project_5
+g++: error: Project_5: No such file or directory
+[harris@lnxsrv07 ~/CS31/Project_5]$ g31 main.cpp PlaneFlight.h PlaneFlight.cpp FrequentFlyerAccount.h FrequentFlyer.cpp
+g++: error: FrequentFlyer.cpp: No such file or directory
+[harris@lnxsrv07 ~/CS31/Project_5]$ g31 main.cpp PlaneFlight.h PlaneFlight.cpp FrequentFlyerAccount.h FrequentFlyerAccount.cpp
+[harris@lnxsrv07 ~/CS31/Project_5]$ ./a.out
+all tests passed!
+[harris@lnxsrv07 ~/CS31/Project_5]$ 
+
+[harris@lnxsrv07 ~/CS31/Project_5]$ g31 -c PlaneFlight.cpp
+[harris@lnxsrv07 ~/CS31/Project_5]$ g31 -c FrequentFlyerAccount.cpp
+[harris@lnxsrv07 ~/CS31/Project_5]$ g31 -c main.cpp
+[harris@lnxsrv07 ~/CS31/Project_5]$ ./a.out
+all tests passed!
+[harris@lnxsrv07 ~/CS31/Project_5]$ 
+
+2.) The easiest test case to run was the insanely thorough test cases in the tech spec. So that's what I used:
+
+    PlaneFlight shortleg("Howard", "LAX", "LAS", 49.00, 285);
+    PlaneFlight longleg("Howard", "LAS", "NYC", 399.00, 2800);
+    PlaneFlight sample("Sample", "Sample", "Sample", 0, 1);
+    FrequentFlyerAccount account("Howard");
+    assert(shortleg.getFromCity() == "LAX");
+    assert(shortleg.getToCity() == "LAS");
+    assert(shortleg.getName() == "Howard");
+    assert(std::to_string(shortleg.getCost()) == "49.000000");
+    assert(std::to_string(shortleg.getMileage()) == "285.000000");
+
+    // account balance starts at zero...
+    assert(std::to_string(account.getBalance()) == "0.000000");
+    assert(account.getName() == "Howard");
+    assert(account.canEarnFreeFlight(3300.00) == false);
+
+    // flights add to an account balance
+    assert(account.addFlightToAccount(shortleg) == true);
+
+    assert(account.addFlightToAccount(longleg) == true);
+    assert(std::to_string(account.getBalance()) == "3085.000000");
+
+    // free flights reduce an account balance
+    if (account.canEarnFreeFlight(285))
+    {
+        assert(account.freeFlight("LAS", "LAX", 285, sample) == true);
+        // Howard earned a free flight...
+        assert(sample.getName() == "Howard");
+        assert(std::to_string(sample.getCost()) == "0.000000");
+        assert(sample.getFromCity() == "LAS");
+        assert(sample.getToCity() == "LAX");
+        assert(std::to_string(sample.getMileage()) == "285.000000");
+        // account has been reduced for this free flight...
+        assert(std::to_string(account.getBalance()) == "2800.000000");
+    }
+    else
+    {
+        assert(false); // there are enough miles in the account...
+    }
+    // non-matching names are ignored
+    PlaneFlight muffin("Muffin", "LAX", "Doggie Heaven", 500, 500);
+    assert(account.addFlightToAccount(muffin) == false);
+    assert(std::to_string(account.getBalance()) == "2800.000000");
+    cout << "all tests passed!" << endl;
+    return (0);
