@@ -29,7 +29,6 @@ Test Cases:
     assert(account.addVacationToAccount(doner1) == false);
     assert(account.getBalance() == 4.000000);
 
-    //My Own
     BloodDonation doner5(707707, 12, 67.38);
     VacationAccount account1(707707);
     assert(doner5.getID() == 707707);
@@ -74,5 +73,9 @@ Test Cases:
     VacationAccount accountK(10);
     assert(accountK.getID() == -1);
 
-    cout << "All tests passed!" << endl;
-    return 0;
+    // Another example from Piaza
+    BloodDonation Pizaza(123456, 25, 120.00);
+    VacationAccount test(123456);
+    assert(test.addVacationToAccount(Pizaza) == true);
+    Pizaza.setAge(11);
+    assert(test.addVacationToAccount(Pizaza) == false);

@@ -69,6 +69,13 @@ int main()
     VacationAccount accountK(10);
     assert(accountK.getID() == -1);
 
+    // Another example from Piaza
+    BloodDonation Pizaza(123456, 25, 120.00);
+    VacationAccount test(123456);
+    assert(test.addVacationToAccount(Pizaza) == true);
+    Pizaza.setAge(11);
+    assert(test.addVacationToAccount(Pizaza) == false);
+
     cout << "All tests passed!" << endl;
     return 0;
 }
