@@ -1,0 +1,659 @@
+Name: Harris Doan
+UID: 605317270
+
+Okay, I am going to put all my thoughts into this report to keep everything organized. I wrote code already to determine whether the months, days, and years are at least 6 months apart. However, I didn't realize we aren't allowed to touch of change the previously done code form Project 6.
+Game Plan: created an additonal .cpp and .h that will contain the statistical data from the BloodDonation such as the month, day, and year in which the donation occured. This new file will then be included in the VacationAccount.h and VacationAccount.cpp
+
+Update: Added a class called DonationData. Added a bunch of stuff. Adding a month, day, and year into the donation data. So for a valid blood donation event, we have one class containing the information
+
+Thoughts: One issue I am starting to realize and see is that, the way we add points to the vacation hours of an employee is solely based on the BloodDonation donation variable. However, I want to create a function similar to this except it takes in the arguments of (BloodDonation donation, DonationData data), so that I can determine if the employee ID's match and the donation events aren't exactly 6 months apart then I can say that the balance is not updated. I did this similar with a running count taking into account the amount of times someone has donated blood.
+
+Code that changes Vacation Account (for reference):
+
+bool VacationAccount::addVacationToAccount(BloodDonation donation)
+{
+
+    if (donation.getID() == -1 || donation.getAge() == -1 || donation.getWeight() == -1 || donation.getID() != mID)
+    {
+        return false;
+    }
+
+    if (mTimesDonated >= 1)
+    {
+        // Same month, same day, same year == bad
+        if (nMonth == donation.getMonth() && nDay == donation.getDay() && nYear == donation.getYear())
+        {
+            return false;
+        }
+
+        // Same month, same day, diff year == as long as nYear < then a year has passed
+        if (nMonth == donation.getMonth() && nDay == donation.getDay() && nYear != donation.getYear())
+        {
+            if (nYear < donation.getYear())
+            {
+                mBalance += 4;
+                mTimesDonated++;
+                nMonth = donation.getMonth();
+                nDay = donation.getDay();
+                nYear = donation.getYear();
+                return true;
+            }
+        }
+
+        // Same month, diff day, diff year == as long as nDay and nYear < then we good
+        if (nMonth == donation.getMonth() && nDay != donation.getDay() && nYear != donation.getYear())
+        {
+            if (nYear < donation.getYear())
+            {
+                mBalance += 4;
+                mTimesDonated++;
+                nMonth = donation.getMonth();
+                nDay = donation.getDay();
+                nYear = donation.getYear();
+                return true;
+            }
+        }
+
+        // diff month, diff day, diff year == as long as nDay, nMonth, and nYear < then we good
+        if (nMonth != donation.getMonth() && nDay != donation.getDay() && nYear != donation.getYear())
+        {
+            // The nDay is at least the same or smaller, and the year is larger
+            if (nYear < donation.getYear())
+            {
+                if (nMonth < 6)
+                {
+                    if ((donation.getMonth() > nMonth + 6) && donation.getDay() >= nDay)
+                    {
+                        mBalance += 4;
+                        mTimesDonated++;
+                        nMonth = donation.getMonth();
+                        nDay = donation.getDay();
+                        nYear = donation.getYear();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                if (nMonth == 6)
+                {
+                    if (nMonth == 12 && donation.getDay() >= nDay)
+                    {
+                        mBalance += 4;
+                        mTimesDonated++;
+                        nMonth = donation.getMonth();
+                        nDay = donation.getDay();
+                        nYear = donation.getYear();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                if (nMonth > 6)
+                {
+                    if ((donation.getMonth() < nMonth - 6) && donation.getDay() >= nDay)
+                    {
+                        mBalance += 4;
+                        mTimesDonated++;
+                        nMonth = donation.getMonth();
+                        nDay = donation.getDay();
+                        nYear = donation.getYear();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        if (nMonth != donation.getMonth() && nDay != donation.getDay() && nYear == donation.getYear())
+        {
+            if (nMonth < 6)
+            {
+                if ((donation.getMonth() >= nMonth + 6) && donation.getDay() > nDay)
+                {
+                    mBalance += 4;
+                    mTimesDonated++;
+                    nMonth = donation.getMonth();
+                    nDay = donation.getDay();
+                    nYear = donation.getYear();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            if (nMonth == 6)
+            {
+                if (nMonth == 12 && donation.getDay() > nDay)
+                {
+                    mBalance += 4;
+                    mTimesDonated++;
+                    nMonth = donation.getMonth();
+                    nDay = donation.getDay();
+                    nYear = donation.getYear();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            if (nMonth > 6)
+            {
+                if ((donation.getMonth() <= nMonth - 6) && donation.getDay() > nDay)
+                {
+                    mBalance += 4;
+                    mTimesDonated++;
+                    nMonth = donation.getMonth();
+                    nDay = donation.getDay();
+                    nYear = donation.getYear();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            if (nMonth != donation.getMonth() && nDay == donation.getDay() && nYear == donation.getYear())
+            {
+                if (nMonth < 6)
+                {
+                    if ((donation.getMonth() >= nMonth + 6))
+                    {
+                        mBalance += 4;
+                        mTimesDonated++;
+                        nMonth = donation.getMonth();
+                        nDay = donation.getDay();
+                        nYear = donation.getYear();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                if (nMonth == 6)
+                {
+                    if (nMonth == 12)
+                    {
+                        mBalance += 4;
+                        mTimesDonated++;
+                        nMonth = donation.getMonth();
+                        nDay = donation.getDay();
+                        nYear = donation.getYear();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                if (nMonth > 6)
+                {
+                    if (donation.getMonth() <= nMonth - 6)
+                    {
+                        mBalance += 4;
+                        mTimesDonated++;
+                        nMonth = donation.getMonth();
+                        nDay = donation.getDay();
+                        nYear = donation.getYear();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
+    mBalance += 4;
+    mTimesDonated++;
+    nMonth = donation.getMonth();
+    nDay = donation.getDay();
+    nYear = donation.getYear();
+
+    return true;
+}
+
+Comments: This worked however only for 2 total donations. I realized that I needed to probably use a function that pass-by-reference to continually modify the value. But this code was a good framework and skeleton to determining whether 6 months had passed so I kept it for future references.
+
+Updates: 3/24/2023
+
+So I decided to overhaul the ENTIRE THING. I kept DonationData as that was a good way to keep track of the dates. Instead of overloading BloodDonation's constructor and adding more
+parameters to it. I decided to just do that to addVacationToAccount. It would be overloaded to take on 4 total parameters. This would be the first BloodDonation that the employee has given
+if they have already donated blood before. And then the Data for that previous donation. And then it'll take on the new donation. I then created a function called sixMonthsPassed() which is my friend
+funciton. I also added another class called DonationAccount and this is where I would be able to keep track of proper donations. It would also check for the amount of times someone has donated before.
+My logic behind this is, if this is your first time donating, then you dont need to use the overloaded original function at all. It doesn't really matter what the date was. But that data would still be record.
+I decided to use my constructor delegation here since it would allow me to initialize the amount of times donated to 0 as an initial condition. For example, if you're thinking of this from a business perspective, security is a huge thing.
+So instead of having all the information available in one class, it is probably safer to have multiple classes with all the information spread out. So this class would specifically be checking whether or not the employee ID from
+all the new classes would be the same. The ID from BloodDonation to VacationAccount to DonationData. All of these must be the same in order for it to even be valid. So I began by implenting all of this.
+
+My idea would be there would be a function that takes in (donation1, data1, donation2, data2) --> and then it would compare data1 and data2 to check whether the correct amount of time had passed by.
+This worked out since my first go at the optional project, I created that code above ^^^. But of course there was some issues. Thats when I figured this was the best time to make it a friend function defined
+as a global variable outside of any class. It became a friend to the DonationData class since it would be the class it would pull information from. I revised this by using the get functions from the DonationData class
+and set them equal to int variables that would make it easier for me to compare and contrast. 
+
+Example:
+bool sixMonthPassed(DonationData data1, DonationData data2)
+{
+    int month1 = data1.getMonth();
+    int day1 = data1.getDay();
+    int year1 = data1.getYear();
+
+    int month2 = data2.getMonth();
+    int day2 = data2.getDay();
+    int year2 = data2.getYear();
+
+    // Same month, same day, same year == bad
+    if (month1 == month2 && day1 == day2 && year1 == year2)
+    {
+        return false;
+    }
+
+    // Same month, same day, diff year == as long as nYear < then a year has passed
+    if (month1 == month2 && day1 == day2 && year1 != year2)
+    {
+        if (year1 < year2)
+        {
+            return true;
+        }
+    }
+
+    // Same month, diff day, diff year == as long as nDay and nYear < then we good
+    if (month1 == month2 && day1 != day2 && year1 != year2)
+    {
+        if (year1 < year2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // diff month, diff day, diff year == as long as nDay, nMonth, and nYear < then we good
+    if (month1 != month2 && day1 != day2 && year1 != year2)
+    {
+        // The nDay is at least the same or smaller, and the year is larger
+        if (year1 + 1 < year2)
+        {
+            return true;
+        }
+
+        if (year1 < year2)
+        {
+            if (month1 < 6)
+            {
+                if (month2 >= (month1 + 6) && day2 >= day1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            if (month1 == 6)
+            {
+                if (month2 == 12 && day2 >= day1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            if (month1 > 6)
+            {
+                if (month2 <= (month1 - 6) && day2 >= day1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (month1 != month2 && day1 != day2 && year1 == year2)
+    {
+        if (month1 < 6)
+        {
+            if (month2 >= month1 + 6 && day2 > day1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        if (month1 == 6)
+        {
+            if (month1 == 12 && day2 > day1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        if (month1 > 6)
+        {
+            if (month2 <= month1 - 6 && day2 > day1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    if (month1 != month2 && day1 == day2 && year1 == year2)
+    {
+        if (month1 < 6)
+        {
+            if (month2 >= month1 + 6)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        if (month1 == 6)
+        {
+            if (month2 == 12)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        if (month1 > 6)
+        {
+            if (month2 <= month1 - 6)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    if (month1 != month2 && day1 == day2 && year1 != year2)
+    {
+        if (month1 < 6)
+        {
+            if (month2 >= (month1 + 6))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        if (month1 == 6)
+        {
+            if (month2 == 12)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        if (month1 > 6)
+        {
+            if (month2 <= (month1 - 6))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    return false;
+}
+
+I for month1 and month2, I could've just kept using data1.getMonth() and data2.getMonth(), but I felt like was more legible and easier to work with since I would've gotten lost
+in the minute differences of month1 vs month2.
+
+This was also my validDate check, since an important part of entering a date is making sure its even possible. I did my best to take into account leap years as well disregarding those weird outliers.
+
+bool DonationData::validDate(DonationData data)
+{
+    // Special case February
+    if (data.getMonth() == 2)
+    {
+        if (data.getYear() % 4 == 0 && data.getDay() >= 1 && data.getDay() <= 29)
+        {
+            return true;
+        }
+        else if (data.getYear() % 4 != 0 && data.getDay() >= 1 && data.getDay() <= 28)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // 31 days
+    if (data.getMonth() == 1 || data.getMonth() == 3 || data.getMonth() == 5 || data.getMonth() == 7 || data.getMonth() == 8 || data.getMonth() == 10 || data.getMonth() == 12)
+    {
+        if (data.getDay() >= 1 && data.getDay() <= 31)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // 30 days
+    if (data.getMonth() == 4 || data.getMonth() == 6 || data.getMonth() == 9 || data.getMonth() == 11)
+    {
+        if (data.getDay() >= 1 && data.getDay() <= 30)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    return false;
+}
+
+This ended up being my final function to add the balances for multiple donations:
+
+bool VacationAccount::addVacationToAccount(BloodDonation donation1, DonationData data1, BloodDonation donation2, DonationData data2)
+{
+    if (donation1.getID() == -1 || donation1.getAge() == -1 || donation1.getWeight() == -1)
+        return false;
+    if (donation1.getID() != mID)
+        return false;
+    if (donation2.getID() == -1 || donation2.getAge() == -1 || donation2.getWeight() == -1)
+        return false;
+    if (donation2.getID() != mID)
+        return false;
+
+    if (sixMonthPassed(data1, data2) != true)
+    {
+        return false;
+    }
+
+    mBalance += 4;
+    return true;
+}
+
+
+The functions involving the the correct dates and correct amount of time elapsing was the most difficult part honestly. For the business logic, I feel like this system
+allows you to nest and hide a lot of personal data such as employee blood donation information. I feel like this allows for your donations to be more secretive and private by spreading the information
+amongst a bunch of different classes and their public vs private members. The business logic for the date was interesting and how I came to figure it out. I came to realize there are SEVERAL different cases for the days.
+There could be a case in which the months, day, and years match. Thats when the best case is to compare the years. If the years are the same. Wrong. If one is bigger than the other then we can proceed. Then we had an additional case
+what if the month, day matched up but not the year. Then we compare the year again. If the year was greater than at least we know we're in the right step. This part was honestly the hardest one. If we had a month where the previous donation was
+towards the end of the year, it would be harder to figure out when the 6 months had elapsed due to the year changing! So I did some math and realized within this case there are 3 sub cases. The sub cases being if the previous donations month was either
+less than 6, equal to 6, or greater than 6. The formualas followed that if it was less than 6, the next donation date simply had to be greater than or equal to the previous month + 6. The day for the new donation date would also have to be either equal or greater than.
+Then there was the case that it was equal to 6. Then it follows that the only possible month would be 12. Then the days for the new donation would have to be greater. Then we have the final case, greater than 6. I figured out mathematically
+its jus the opposite. Instead of adding 6, we swap the signs and change it to minus 6. So as long as the new date was smaller than the previous one by 6, and the new days were greater than it was a valid day. Then we had the case if it was 
+diff months, same day and year. For this all I had to do was follow the same logic as before with the 3 different sub cases and whether or not +6 or -6 was valid. This is how I came up with all my stuff for this project.
+
+
+these were my assert tests cases excluding the original from project 6:
+
+// Proper leap year returns true!
+    DonationData Employee1(111111, 2, 29, 2012);
+    assert(Employee1.getMonth() == 2);
+    assert(Employee1.getDay() == 29);
+    assert(Employee1.getYear() == 2012);
+    assert(Employee1.validDate(Employee1) == true);
+
+    // Improper leap year should return false! 2011 is not a leap year!
+    DonationData Employee2(111111, 2, 29, 2011);
+    assert(Employee2.getMonth() == 2);
+    assert(Employee2.getDay() == 29);
+    assert(Employee2.getYear() == 2011);
+    assert(Employee2.validDate(Employee2) == false);
+
+    // Proper date in a month with 31 days
+    DonationData Employee3(111111, 1, 31, 2022);
+    assert(Employee3.getMonth() == 1);
+    assert(Employee3.getDay() == 31);
+    assert(Employee3.getYear() == 2022);
+    assert(Employee3.validDate(Employee3) == true);
+
+    // Improper date in a month with 30 days
+    DonationData Employee4(111111, 4, 31, 2022);
+    assert(Employee4.getMonth() == 4);
+    assert(Employee4.getDay() == 31);
+    assert(Employee4.getYear() == 2022);
+    assert(Employee4.validDate(Employee4) == false);
+
+    // Check for valid function to test for 6 months elapsing
+
+    // Same month, same day, same year == false;
+    DonationData Data1(707707, 1, 1, 2021);
+    DonationData Data2(707707, 1, 1, 2021);
+    assert(sixMonthPassed(Data1, Data2) == false);
+
+    // Same month, same day, diff year == true if 2nd is bigger
+    DonationData DataA(707707, 1, 1, 2021);
+    DonationData DataB(707707, 1, 1, 2022);
+    assert(sixMonthPassed(DataA, DataB) == true);
+
+    // All different
+    DonationData DataX(707707, 1, 1, 2021);
+    DonationData DataY(707707, 7, 4, 2023);
+    assert(sixMonthPassed(DataX, DataY) == true);
+
+    // Diff month, day. Same year
+    DonationData DataP(707707, 1, 1, 2021);
+    DonationData DataD(707707, 6, 4, 2021);
+    assert(sixMonthPassed(DataP, DataD) == false);
+
+    // Diff month. Same day, year
+    DonationData DataM(707707, 1, 1, 2021);
+    DonationData DataN(707707, 7, 1, 2021);
+    assert(sixMonthPassed(DataM, DataN) == true);
+
+    //----DONE TESTING FUNCTION---//
+
+    // Begin Testing on Making Sure 6 Months has passed in order to donate
+
+    BloodDonation RealTest(777777, 25, 154.50);
+    DonationData RealData1(777777, 1, 1, 2021);
+    DonationAccount RealAccount1(777777, 0); // Since we can see that they have no donated before we can use the old function of addVacationToBalance
+    VacationAccount RealVacaTest(777777);
+    assert(RealVacaTest.addVacationToAccount(RealTest) == true);
+    assert(RealVacaTest.getBalance() == 4);
+
+    // Now the company knows he has donated before so +1 on timesDonated in the DonationAccount class
+
+    BloodDonation RealTest2(777777, 25, 154.50);
+    DonationData RealData2(777777, 7, 1, 2021); // 6 months has passed so we should have a total balance of 8 at the end
+    DonationAccount RealAccount2(777777, 1);
+    assert(RealVacaTest.addVacationToAccount(RealTest, RealData1, RealTest2, RealData2) == true);
+    assert(RealVacaTest.getBalance() == 8);
+
+    // Now lets test for the opposite case in which the month has not elapsed.
+    BloodDonation RealTest3(777777, 25, 154.50);
+    DonationData RealData3(777777, 7, 2, 2021); // Hes a bad employee and tries to donate again the next day smh...
+    DonationAccount RealAccount3(777777, 2);
+    assert(RealVacaTest.addVacationToAccount(RealTest2, RealData2, RealTest3, RealData3) == false);
+    assert(RealVacaTest.getBalance() == 8);
+
+    // Test case in which a full year has elapsed
+    BloodDonation Johnny(111222, 45, 134.01);
+    DonationData JohnnyData(111222, 5, 6, 2022);
+    DonationAccount JohnnyAccount(111222, 0);
+    VacationAccount JohnnyVaca(111222);
+    assert(JohnnyVaca.addVacationToAccount(Johnny) == true);
+    assert(JohnnyVaca.getBalance() == 4);
+
+    BloodDonation Johnny2(111222, 46, 156.12); // Hes 1 year older and has put on some pounds
+    DonationData JohnnyData2(111222, 5, 6, 2023);
+    DonationAccount JohnnyAccount1(111222, 1);
+    assert(JohnnyVaca.addVacationToAccount(Johnny, JohnnyData, Johnny2, JohnnyData2) == true);
+    assert(JohnnyVaca.getBalance() == 8);
+
+    // Most complicated test case with dates = donated towards the end of one year and rolled into the other
+
+    BloodDonation Jonathan(777999, 21, 165.60);
+    DonationData JonathanData(777999, 8, 25, 2021);
+    DonationAccount JonathanAccount(777999, 0);
+    VacationAccount JonathanVaca(777999);
+    assert(JonathanVaca.addVacationToAccount(Jonathan) == true);
+    assert(JonathanVaca.getBalance() == 4);
+
+    BloodDonation Jonathan2(777999, 22, 165.60);
+    DonationData JonathanData2(777999, 2, 25, 2022);
+    DonationAccount JonthanAccount2(777999, 1);
+    assert(sixMonthPassed(JonathanData, JonathanData2) == true);
+    assert(JonathanVaca.addVacationToAccount(Jonathan, JonathanData, Jonathan2, JonathanData2) == true);
+    assert(JonathanVaca.getBalance() == 8);
